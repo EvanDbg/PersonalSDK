@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: EnvBuild
+name: TweakBuild
 
 # Controls when the action will run. 
 on:
@@ -21,11 +21,17 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a set of commands using the runners shell
-      - name: sdk env
+      - name: theos env
         run: |
-          curl -O http://storage.yfyf.fun/iPhoneOS13.2.sdk.zip
-          unzip -n iPhoneOS13.2.sdk.zip -d .
-          rm -rf iPhoneOS13.2.sdk.zip
+          git clone https://github.com/xybp888/iOS-SDKs ../iOS-SDKs
+          cp -r ../iOS-SDKs/iPhoneOS14.4.sdk .
+          git clone https://github.com/iCH3F/iOS-13.3-Private-SDK ../iOS-13.3-Private-SDK
+          mkdir -p ./iPhoneOS14.4.sdk/System/Library/PrivateFrameworks/ControlCenterUIKit.framework/Headers
+          cp ../iOS-13.3-Private-SDK/iPhoneOS13.3.sdk/System/Library/PrivateFrameworks/ControlCenterUIKit.framework/Headers/* ./iPhoneOS14.4.sdk/System/Library/PrivateFrameworks/ControlCenterUIKit.framework/Headers
+          git clone --recursive git://github.com/theos/theos.git ../theos
+          cp ../theos/Prefix.pch .
+          git clone https://github.com/Muirey03/RemoteLog.git ../RemoteLog
+          cp ../RemoteLog/RemoteLog.h .
           
       - name: Add & Commit
         # You may pin to the exact commit or the version.
