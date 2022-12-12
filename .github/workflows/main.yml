@@ -28,10 +28,6 @@ jobs:
           git clone https://github.com/iCH3F/iOS-13.3-Private-SDK ../iOS-13.3-Private-SDK
           mkdir -p ./iPhoneOS14.4.sdk/System/Library/PrivateFrameworks/ControlCenterUIKit.framework/Headers
           cp ../iOS-13.3-Private-SDK/iPhoneOS13.3.sdk/System/Library/PrivateFrameworks/ControlCenterUIKit.framework/Headers/* ./iPhoneOS14.4.sdk/System/Library/PrivateFrameworks/ControlCenterUIKit.framework/Headers
-          git clone --recursive git://github.com/theos/theos.git ../theos
-          cp ../theos/Prefix.pch .
-          git clone https://github.com/Muirey03/RemoteLog.git ../RemoteLog
-          cp ../RemoteLog/RemoteLog.h .
           
       - name: Add & Commit
         # You may pin to the exact commit or the version.
